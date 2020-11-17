@@ -7,7 +7,8 @@ import { AppContainer } from './components/common/Layout'
 
 function App() {
   return (
-    <Container maxWidth="sm">
+    <Container>
+      {/* <Container maxWidth="sm"> */}
       <Home />
     </Container>
   );
