@@ -47,9 +47,13 @@ export default function SearchBar(props) {
         value,
         handleInputOnChange,
         filterOptions,
+        sortOptions,
     } = props;
     return (
         <FlexContainer>
+            <SortBy
+                sortOptions={sortOptions}
+            />
             <FilterBy
                 filterOptions={filterOptions}
             />
@@ -114,11 +118,49 @@ function FilterBy(props) {
                     onChange={handleChange}
                     label={filterOptions.label}
                 >
-                    <MenuItem value="">
-                        <em>None</em>
-                    </MenuItem>
                     {
                         filterOptions.options.map(option => (
+                            <MenuItem value={option.id}>{option.display}</MenuItem>
+                        ))
+                    }
+                </Select>
+            </FormControl>
+    )
+}
+
+function SortBy(props) {
+    const useStyles = makeStyles((theme) => ({
+        root: {
+          padding: '2px 4px',
+          display: 'flex',
+          alignItems: 'center',
+        },
+        formControl: {
+            margin: theme.spacing(1),
+            minWidth: 120,
+          },
+      }));
+
+    const classes = useStyles();
+
+    const { sortOptions } = props;
+
+    const handleChange = (event) => {
+        sortOptions.handleChange(event.target.value);
+    };
+
+    return (
+        <FormControl variant="outlined" className={classes.formControl}>
+                <InputLabel id="demo-simple-select-outlined-label">Sort By</InputLabel>
+                <Select
+                    labelId="demo-simple-select-outlined-label"
+                    id="demo-simple-select-outlined"
+                    value={sortOptions.sortBy}
+                    onChange={handleChange}
+                    label={'Sort by'}
+                >
+                    {
+                        sortOptions.options.map(option => (
                             <MenuItem value={option.id}>{option.display}</MenuItem>
                         ))
                     }

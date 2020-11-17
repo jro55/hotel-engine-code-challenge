@@ -20,7 +20,8 @@ export default function Home() {
 
     const [searchTerm, setSearchTerm] = useState('');
     const [searchResults, setSearchResults] = useState({});
-    const [activeFilter, setActiveFilter] = useState('');
+    const [activeFilter, setActiveFilter] = useState('any');
+    const [sortBy, setSortBy] = useState('best match');
 
     return (
         <div>
@@ -36,12 +37,21 @@ export default function Home() {
                 filterOptions={{
                     label: 'Language',
                     options: [
+                        { id: 'any', display: 'Any' },
                         { id: 'javascript', display: 'JavaScript' },
                         { id: 'java', display: 'Java' },
                         { id: 'python', display: 'Python' },
                     ],
                     handleChange: option => setActiveFilter(option),
-                    activeFilter: activeFilter,
+                    activeFilter,
+                }}
+                sortOptions={{
+                    options: [
+                        { id: 'best match', display: 'Best match' },
+                        { id: 'stars', display: 'Stars' },
+                    ],
+                    handleChange: option => setSortBy(option),
+                    sortBy,
                 }}
             />
             <ListView
@@ -52,8 +62,12 @@ export default function Home() {
 
     async function handleSearch() {
         try {
-            const params = { q: `${searchTerm}+` }
-            if (activeFilter) params.q += `language:${activeFilter}`;
+            const params = {
+                q: `${searchTerm}+`,
+                sort: sortBy,
+            }
+            if (activeFilter !== 'any') params.q += `language:${activeFilter}`;
+
             console.log('params', params)
             const results = await makeRequest('get', 'https://api.github.com/search/repositories', {}, params)
             console.log('results', results)
