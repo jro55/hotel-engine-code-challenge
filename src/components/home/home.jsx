@@ -20,6 +20,7 @@ export default function Home() {
 
     const [searchTerm, setSearchTerm] = useState('');
     const [searchResults, setSearchResults] = useState({});
+    const [activeFilter, setActiveFilter] = useState('');
 
     return (
         <div>
@@ -32,6 +33,16 @@ export default function Home() {
                 handleInputOnChange={term => setSearchTerm(term)}
                 handleSearch={handleSearch}
                 searchIcon
+                filterOptions={{
+                    label: 'Language',
+                    options: [
+                        { id: 'javascript', display: 'JavaScript' },
+                        { id: 'java', display: 'Java' },
+                        { id: 'python', display: 'Python' },
+                    ],
+                    handleChange: option => setActiveFilter(option),
+                    activeFilter: activeFilter,
+                }}
             />
             <ListView
                 results={searchResults.items || []}
@@ -41,7 +52,10 @@ export default function Home() {
 
     async function handleSearch() {
         try {
-            const results = await makeRequest('get', 'https://api.github.com/search/repositories', {}, { q: searchTerm})
+            const params = { q: `${searchTerm}+` }
+            if (activeFilter) params.q += `language:${activeFilter}`;
+            console.log('params', params)
+            const results = await makeRequest('get', 'https://api.github.com/search/repositories', {}, params)
             console.log('results', results)
             setSearchResults(results);
         } catch (error) {

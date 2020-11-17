@@ -13,11 +13,11 @@ export default function ListView(props) {
             </div>
         )
     }
-    console.log(results[0])
     return (
         <FlexContainer>
             {
                 results.map((result) => {
+                    console.log(result.language)
                     return (
                         <MediaCard
                             imageUrl={result.owner.avatar_url}
