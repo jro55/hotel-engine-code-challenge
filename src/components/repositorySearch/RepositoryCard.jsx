@@ -8,6 +8,10 @@ import Typography from '@material-ui/core/Typography';
 import StarIcon from '@material-ui/icons/Star';
 import GitHubIcon from '@material-ui/icons/GitHub';
 
+/**
+ * Displays a clickable respository card
+ * @param {object} props 
+ */
 export default function RepositoryCard(props) {
 	const classes = useStyles();
 
@@ -15,7 +19,6 @@ export default function RepositoryCard(props) {
 		title,
 		description,
 		stars,
-		language,
 		imageUrl,
 		owner,
 		onClick,
@@ -86,9 +89,5 @@ const useStyles = makeStyles({
 	header__item__text: {
 		marginBottom: -1,
 		paddingLeft: 5,
-	},
-	language: {
-		flex: 1,
-		textAlign: 'right',
 	},
 });

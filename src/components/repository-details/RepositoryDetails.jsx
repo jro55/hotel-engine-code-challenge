@@ -6,12 +6,14 @@ import GitHubIcon from '@material-ui/icons/GitHub';
 
 import { useRepository } from '../../data/RepositoryContext';
 
-export default function RepositoryDetails(props) {
+/**
+ * Displays the repository details
+ */
+export default function RepositoryDetails() {
 	const classes = useStyles();
 
 	const { state } = useRepository();
 	const repository = state.repository;
-	console.log('repository', repository);
 
 	if (Object.keys(repository).length === 0) {
 		return (

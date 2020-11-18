@@ -8,7 +8,6 @@ import WhereGif from '../../tenor.gif';
 
 function RepositoryListView(props) {
 	const { results, totalCount } = props;
-	console.log('render');
 	const { dispatch } = useRepository();
 	const navigate = useNavigate();
 
@@ -52,8 +51,10 @@ function RepositoryListView(props) {
 	);
 }
 
+// Use React.memo to prevent unnecessary re-renders
 export default React.memo(RepositoryListView);
 
+// Below I used styled components to make easily readable, styled components. Just another way to styling.
 const FlexContainer = styled.div`
 	display: flex;
 	flex-direction: row;

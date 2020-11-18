@@ -8,7 +8,10 @@ import ProgressSpinner from '../common/ProgressSpinner';
 import { makeRequest } from '../../services/APIService';
 import { useRepository } from '../../data/RepositoryContext';
 
-export default function Home() {
+/**
+ * This is the default search page for the application
+ */
+export default function RepositorySearch() {
 	const classes = useStyles();
 
 	// respository state
@@ -75,7 +78,6 @@ export default function Home() {
 	 * @param {string=} popularSearchTerm - predefined search term
 	 */
 	async function handleSearch(popularSearchTerm) {
-        console.log('popularSearchTerm', popularSearchTerm)
 		try {
 			setBusy(true);
 			const params = { sort: sortBy };
@@ -118,6 +120,10 @@ export default function Home() {
 	}
 }
 
+/**
+ * Displays clickable popular search terms
+ * @param {function} handlePopularSearchTermOnClick 
+ */
 function DefaultText(props) {
 	const classes = useStyles();
 
@@ -145,9 +151,9 @@ function DefaultText(props) {
 	];
 
 	return (
-		<div className={classes.defaultTextContainer}>
-			<div className={classes.defaultTextTitle}>What is GitHub?</div>
-			<div className={classes.defaultTextParagraph}>
+		<div className={classes.defaultText__container}>
+			<div className={classes.defaultText_title}>What is GitHub?</div>
+			<div className={classes.defaultText_paragraph}>
 				GitHub is a code hosting platform for version control and collaboration.
 				It lets you and others work together on projects from anywhere.
 				<br />
@@ -159,7 +165,7 @@ function DefaultText(props) {
 					Learn more about it here!
 				</a>
 			</div>
-			<div className={classes.defaultTextTitle}>Popular searches by JRo</div>
+			<div className={classes.defaultText_title}>Popular searches by JRo</div>
 			<div>
 				{popularSearches.map((searchTerm) => (
 					<Chip
@@ -174,6 +180,9 @@ function DefaultText(props) {
 	);
 }
 
+// This is a style convention that is straight from https://material-ui.com/
+// I am not a big fan of it but I wanted to use their pattern for some parts of
+// the app to save on time
 const useStyles = makeStyles((theme) => ({
 	title: {
 		margin: 40,
@@ -181,15 +190,15 @@ const useStyles = makeStyles((theme) => ({
 		fontSize: 20,
 		textAlign: 'center',
 	},
-	defaultTextContainer: {
+	defaultText__container: {
 		marginTop: 20,
 	},
-	defaultTextTitle: {
+	defaultText_title: {
 		fontSize: 18,
 		fontWeight: 'bold',
 		marginTop: 40,
 	},
-	defaultTextParagraph: {
+	defaultText_paragraph: {
 		fontSize: 14,
 	},
 	popularSearchChip: {

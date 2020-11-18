@@ -10,6 +10,19 @@ import MenuItem from '@material-ui/core/MenuItem';
 import FormControl from '@material-ui/core/FormControl';
 import Select from '@material-ui/core/Select';
 
+/**
+ * Displays a search bar
+ * @param {object} props 
+ * @param {string} props.placeholder
+ * @param {boolean} props.searchIcon
+ * @param {function} props.handleSearch
+ * @param {string} props.value
+ * @param {function} props.handleInputOnChange
+ * @param {object} props.filterOptions
+ * @param {object} props.sortOptions
+ * @param {boolean} props.disabled
+ * @param {function} props.clearAll
+ */
 export default function SearchBar(props) {
 	const useStyles = makeStyles((theme) => ({
 		root: {
@@ -80,6 +93,12 @@ export default function SearchBar(props) {
 	);
 }
 
+/**
+ * Displays a FilterBy option
+ * @param {object} props
+ * @param {object} props.filterOptions
+ * @param {booldea} props.disabled
+ */
 function FilterBy(props) {
 	const useStyles = makeStyles((theme) => ({
 		root: {
@@ -124,6 +143,12 @@ function FilterBy(props) {
 	);
 }
 
+/**
+ * Displays a SortBy option
+ * @param {object} props
+ * @param {object} props.sortOptions
+ * @param {booldea} props.disabled
+ */
 function SortBy(props) {
 	const useStyles = makeStyles((theme) => ({
 		root: {
@@ -166,6 +191,10 @@ function SortBy(props) {
 	);
 }
 
+/**
+ * Displays a clear all clickable text
+ * @param {function} clearAll 
+ */
 function ClearAll({ clearAll }) {
 	return <ClearAllContainer onClick={clearAll}>Clear all</ClearAllContainer>;
 }
