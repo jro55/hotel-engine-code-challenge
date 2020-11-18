@@ -2,6 +2,7 @@ import React from 'react';
 import Paper from '@material-ui/core/Paper';
 import { makeStyles } from '@material-ui/core/styles';
 import StarIcon from '@material-ui/icons/Star';
+import GitHubIcon from '@material-ui/icons/GitHub';
 
 import { useRepository } from '../../data/RepositoryContext';
 
@@ -25,13 +26,16 @@ export default function RepositoryDetails(props) {
     return (
         <Paper className={classes.root}>
             <div className={classes.title}>
-                <div className={classes.title__stars}>
+                <div className={classes.title__item}>
                     <StarIcon style={{ color: 'gold' }} />
-                    <span className={classes.title__stars__text}>{repository.watchers}</span>
+                    <span className={classes.title__item__left__text}>{repository.watchers}</span>
                 </div>
-                <div className={classes.title__link}>
-                    <a href={repository.owner.url} target={'_blank'} rel="noreferrer">{repository.owner.login}</a>
-                    &nbsp; / &nbsp; <a href={repository.url} target={'_blank'} rel="noreferrer">{repository.name}</a>
+                <div className={classes.title__item}>
+                    <GitHubIcon style={{ fontSize: '2em' }} />
+                    <span className={classes.title__item__center__text}>Repository</span>
+                </div>
+                <div className={classes.title__item}>
+                    <span className={classes.title__item__right__text}>{repository.language}</span>
                 </div>
             </div>
             <div className={classes.body}>
@@ -51,7 +55,7 @@ export default function RepositoryDetails(props) {
                     Home page:
                 </div>
                 <div className={classes.body__field}>
-                    <a href={repository.homepage} target={'_blank'} rel="noreferrer">{repository.homepage}</a>
+                    <a href={repository.homepage} target={'_blank'} rel="noreferrer">{repository.homepage || 'N/A'}</a>
                 </div>
                 <div className={classes.body__header}>
                     Archived:
@@ -76,8 +80,9 @@ const useStyles = makeStyles((theme) => ({
         padding: 20,
         backgroundColor: '#FAFBFC',
         width: '100%',
-        flexDirection: 'column',
+        flexDirection: 'row',
         borderBottom: '1px solid #EAECEF',
+        justifyContent: 'space-between',
     },
     title__link: {
         color: '#0366D6',
@@ -89,13 +94,20 @@ const useStyles = makeStyles((theme) => ({
         justifyContent: 'space-between',
         textAlign: 'right',
     },
-    title__stars: {
+    title__item: {
         display: 'flex',
         alignItems: 'center',
     },
-    title__stars__text: {
+    title__item__left__text: {
         marginBottom: -1,
         paddingLeft: 5,
+        fontSize: 18,
+    },
+    title__item__center__text: {
+        paddingLeft: 5,
+        fontSize: 18,
+    },
+    title__item__right__text: {
         fontSize: 18,
     },
     body: {
