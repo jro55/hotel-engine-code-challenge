@@ -26,7 +26,7 @@ export default function RepositorySearch() {
 	return (
 		<>
 			<ProgressSpinner visible={busy} />
-			<div className={classes.title}>Search de GitHub!!!!</div>
+			<div className={classes.title}>Search de GitHub</div>
 			<SearchBar
 				placeholder="Search GitHub"
 				value={searchTerm}
