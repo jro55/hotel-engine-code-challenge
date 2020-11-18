@@ -54,6 +54,7 @@ export default function Home() {
                     sortBy,
                 }}
                 disabled={busy}
+                clearAll={clearAll}
             />
             {
                 !state.didPerformSearch && !state.repositorySearchResults.items
@@ -69,6 +70,10 @@ export default function Home() {
         </>
     )
 
+    /**
+     * Searches GitHub's repositories API
+     * @param {string=} popularSearchTerm - predefined search term
+     */
     async function handleSearch(popularSearchTerm) {
         try {
             setBusy(true);
@@ -91,6 +96,16 @@ export default function Home() {
             setBusy(false);
             alert('An error occurred fetching results from GitHub, please try again.')
         }
+    }
+
+    /**
+     * Sets all repository state back to initial
+     */
+    function clearAll() {
+        setSearchTerm('');
+        setSortBy('best match')
+        setActiveFilter('any')
+        dispatch({ type: 'SET_REPOSITORY_SEARCH_RESULTS', results: {} })
     }
 }
 

@@ -17,6 +17,7 @@ export default function SearchBar(props) {
           display: 'flex',
           alignItems: 'center',
           width: 400,
+          position: 'relative',
         },
         input: {
           marginLeft: theme.spacing(1),
@@ -42,6 +43,7 @@ export default function SearchBar(props) {
         filterOptions,
         sortOptions,
         disabled,
+        clearAll,
     } = props;
     return (
         <FlexContainer>
@@ -78,6 +80,9 @@ export default function SearchBar(props) {
                             <SearchIcon />
                         </IconButton>
                     )
+                }
+                {
+                    clearAll && <ClearAll clearAll={clearAll} />
                 }
             </Paper>
         </FlexContainer>
@@ -177,6 +182,20 @@ function SortBy(props) {
             </FormControl>
     )
 }
+
+function ClearAll({ clearAll }) {
+    return (
+        <ClearAllContainer onClick={clearAll}>Clear all</ClearAllContainer>
+    )
+}
+
+const ClearAllContainer = styled.div`
+    position: absolute;
+    right: -70px;
+    color: #57c1e9;
+    font-weight: bold;
+    cursor: pointer;
+`
 
   export const FlexContainer = styled.div`
     display: flex;

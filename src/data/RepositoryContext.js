@@ -25,10 +25,11 @@ export function useRepository() {
 export function repositoryReducer(state, action) {
     switch (action.type) {
         case SET_REPOSITORY_SEARCH_RESULTS: {
+            const isEmpty = Object.keys(action.results).length === 0
             return {
                 ...state,
                 repositorySearchResults: action.results,
-                didPerformSearch: true,
+                didPerformSearch: isEmpty ? false : true,
             }
           }
         case SET_ACTIVE_REPOSITORY: {
