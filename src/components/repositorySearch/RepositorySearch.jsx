@@ -169,6 +169,7 @@ function DefaultText(props) {
 			<div>
 				{popularSearches.map((searchTerm) => (
 					<Chip
+                        key={searchTerm}
 						label={searchTerm}
 						clickable
 						className={classes.popularSearchChip}

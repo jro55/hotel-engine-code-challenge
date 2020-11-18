@@ -1,5 +1,7 @@
-import React from 'react';
+import { render, screen, fireEvent } from '@testing-library/react';
+import App from '../../App';
 
-export function Home() {
-	return <div>super super</div>;
-}
+test('renders search bar', () => {
+  render(<App />);
+  expect(screen.getByTestId('search-input')).toBeVisible()
+});

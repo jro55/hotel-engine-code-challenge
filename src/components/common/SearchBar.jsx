@@ -66,7 +66,10 @@ export default function SearchBar(props) {
 				<InputBase
 					className={classes.input}
 					placeholder={placeholder}
-					inputProps={{ 'aria-label': 'search google maps' }}
+					inputProps={{
+                        'aria-label': 'search GitHub',
+                        'data-testid': 'search-input',
+                    }}
 					value={value}
 					onChange={(e) => handleInputOnChange(e.target.value)}
 					onKeyDown={(e) => {
@@ -79,6 +82,7 @@ export default function SearchBar(props) {
 				/>
 				{searchIcon && (
 					<IconButton
+                        data-testid={'search-button'}
 						onClick={handleSearch}
 						className={classes.iconButton}
 						aria-label="search"
