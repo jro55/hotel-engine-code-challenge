@@ -3,7 +3,7 @@
 Hi there, if you are reading this my guess is that you work for Hotel Engine. First off, I want to say thank you for taking the time to review my project! Please feel free to play around with the app and try to break it.
 
 A couple of notes about the code.
-1. It's always important to have self-documenting code. For this project, I choose to use JS docs as my form of documentation mainly for time reasons. In past projects I have used this as well as TypeScript.
+1. It's always important to have self-documenting code. For this project, I chose to use JS docs as my form of documentation mainly for time reasons. In past projects I have used this as well as TypeScript.
 2. There are a million patterns to do styling for an application. This project uses both classes and styled components for styling with everything being powered by Material Design. In a larger, production application I would decide on a single pattern. 
 
 ## Development
