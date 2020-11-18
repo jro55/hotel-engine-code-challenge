@@ -1,6 +1,5 @@
 import React from "react"
-import { render } from "react-dom"
-import { Router, Link } from "@reach/router"
+import { Router } from "@reach/router"
 
 import { RepositorySearch } from './components/repositorySearch';
 import { RepositoryDetails } from './components/repository-details';

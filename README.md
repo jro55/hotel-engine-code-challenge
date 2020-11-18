@@ -10,9 +10,13 @@ A couple of notes about the code.
 
 To get started, please clone the project by running:
 
-#### `git clone git@github.com:jro55/hotel-engine-code-challenge.git`
+#### `git clone https://github.com/jro55/hotel-engine-code-challenge.git`
 
 Navigate to the project directory and run:
+
+#### `npm install`
+
+Followed by:
 
 #### `npm start`
 
@@ -22,7 +26,8 @@ Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
 The page will reload if you make edits.\
 You will also see any lint errors in the console.
 
-Enjoy!
+Troubleshooting:
+If you get an error while trying to start the app, try upgrading your version of node.
 
 #### `npm test`
 

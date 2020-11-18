@@ -27,7 +27,7 @@ function RepositoryListView(props) {
 	}
 	return (
 		<>
-			<div inputProps={{ 'data-testid': 'total-count' }}>{totalCount} total results</div>
+			<TotalCount>{totalCount} total results</TotalCount>
 			<FlexContainer>
 				{results.map((repository) => {
 					return (
