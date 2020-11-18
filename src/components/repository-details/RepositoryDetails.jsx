@@ -3,6 +3,7 @@ import Paper from '@material-ui/core/Paper';
 import { makeStyles } from '@material-ui/core/styles';
 import StarIcon from '@material-ui/icons/Star';
 import GitHubIcon from '@material-ui/icons/GitHub';
+import CodeIcon from '@material-ui/icons/Code';
 
 import { useRepository } from '../../data/RepositoryContext';
 
@@ -40,12 +41,15 @@ export default function RepositoryDetails() {
 					<span className={classes.title__item__center__text}>Repository</span>
 				</div>
 				<div className={classes.title__item}>
+					<CodeIcon />
 					<span className={classes.title__item__right__text}>
 						{repository.language}
 					</span>
 				</div>
 			</div>
 			<div className={classes.body}>
+				<div className={classes.body__header}>Owner:</div>
+				<div className={classes.body__field}>{repository.owner.login}</div>
 				<div className={classes.body__header}>Description:</div>
 				<div className={classes.body__field}>{repository.description}</div>
 				<div className={classes.body__header}>Created:</div>
@@ -105,6 +109,7 @@ const useStyles = makeStyles((theme) => ({
 		fontSize: 18,
 	},
 	title__item__right__text: {
+		paddingLeft: 5,
 		fontSize: 18,
 	},
 	body: {
