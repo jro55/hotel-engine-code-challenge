@@ -13,11 +13,13 @@ import Box from '@material-ui/core/Box';
 import { Container } from '../common/Layout'
 import SearchBar from '../common/SearchBar';
 import ListView from './ListView';
-import { makeRequest } from '../../services/APIService'
+import ProgressSpinner from '../common/ProgressSpinner';
+import { makeRequest } from '../../services/APIService';
 
 export default function Home() {
     const classes = useStyles();
 
+    const [busy, setBusy] = useState(false);
     const [searchTerm, setSearchTerm] = useState('');
     const [searchResults, setSearchResults] = useState({});
     const [activeFilter, setActiveFilter] = useState('any');
@@ -25,6 +27,7 @@ export default function Home() {
 
     return (
         <div>
+            <ProgressSpinner visible={busy} />
             <div>
                 Search de GitHub!!!!
             </div>
@@ -62,6 +65,7 @@ export default function Home() {
 
     async function handleSearch() {
         try {
+            setBusy(true);
             const params = {
                 q: `${searchTerm}+`,
                 sort: sortBy,
@@ -72,9 +76,11 @@ export default function Home() {
             const results = await makeRequest('get', 'https://api.github.com/search/repositories', {}, params)
             console.log('results', results)
             setSearchResults(results);
+            setBusy(false);
         } catch (error) {
             console.error('error here')
             // Normally I would log something here for future debugging purposes
+            setBusy(false);
         }
     }
 }

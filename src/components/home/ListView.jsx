@@ -23,6 +23,7 @@ export default function ListView(props) {
                             imageUrl={result.owner.avatar_url}
                             title={result.name}
                             description={result.description}
+                            stars={result.watchers}
                     />
                     )
                 })
