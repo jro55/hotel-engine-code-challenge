@@ -5,13 +5,18 @@ import SearchBar from '../common/SearchBar';
 import RepositoryListView from './RepositoryListView';
 import ProgressSpinner from '../common/ProgressSpinner';
 import { makeRequest } from '../../services/APIService';
+import { useRepository } from '../../data/RepositoryContext';
 
 export default function Home() {
     const classes = useStyles();
 
+    const { state, dispatch } = useRepository();
+    console.log('state', state)
+
+    // const searchResults = state.repositorySearchResults?.
     const [busy, setBusy] = useState(false);
     const [searchTerm, setSearchTerm] = useState('');
-    const [searchResults, setSearchResults] = useState({});
+    // const [searchResults, setSearchResults] = useState(state.repositorySearchResults);
     const [activeFilter, setActiveFilter] = useState('any');
     const [sortBy, setSortBy] = useState('best match');
 
@@ -51,8 +56,8 @@ export default function Home() {
                 disabled={busy}
             />
             <RepositoryListView
-                results={searchResults.items || []}
-                totalCount={searchResults.total_count}
+                results={state.repositorySearchResults.items || []}
+                totalCount={state.repositorySearchResults.total_count}
             />
         </>
     )
@@ -65,10 +70,9 @@ export default function Home() {
                 sort: sortBy,
             }
             if (activeFilter !== 'any') params.q += `language:${activeFilter}`;
-            
-            const results = await makeRequest('get', 'https://api.github.com/search/repositories', {}, params)
+            const results = await makeRequest('get', 'https://api.github.com/search/repositories', {}, params);
             console.log('results', results)
-            setSearchResults(results);
+            dispatch({ type: 'SET_REPOSITORY_SEARCH_RESULTS', results })
             setBusy(false);
         } catch (error) {
             // normally I would log something here for future debugging purposes
