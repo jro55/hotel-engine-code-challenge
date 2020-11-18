@@ -12,7 +12,7 @@ function RepositoryListView(props) {
     const { dispatch } = useRepository();
     const navigate = useNavigate()
 
-    if (didPerformSearch && !results.length) {
+    if (!results.length) {
         return (
             <Container>
                 <NoResultsContainer>
@@ -22,16 +22,6 @@ function RepositoryListView(props) {
                     </NoResultsText>
                     <img src={WhereGif} alt="loading..."/>
                 </NoResultsContainer>
-            </Container>
-        )
-    }
-    if (!results.length) {
-        return (
-            <Container>
-                <Title>What is GitHub?</Title>
-                <Paragraph>
-                    GitHub is a code hosting platform for version control and collaboration. It lets you and others work together on projects from anywhere.
-                </Paragraph>
             </Container>
         )
     }
@@ -79,15 +69,6 @@ const Container = styled.div`
 const TotalCount = styled.div`
     margin-left: 15px;
     margin-top: 20px;
-`;
-
-const Title = styled.div`
-    font-size: 18px;
-    font-weight: bold;
-`;
-
-const Paragraph = styled.p`
-    font-size: 14px;
 `;
 
 const NoResultsContainer = styled.div`
