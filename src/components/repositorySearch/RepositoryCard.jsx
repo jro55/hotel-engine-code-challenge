@@ -82,7 +82,6 @@ const useStyles = makeStyles({
         justifyContent: 'space-between'
     },
     header__item: {
-        // flex: 1,
         display: 'flex',
         alignItems: 'center',
     },

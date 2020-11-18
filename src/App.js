@@ -1,7 +1,6 @@
 import Container from '@material-ui/core/Container';
 
 import './App.css';
-import { Home } from './components/home'
 import Router from './Router';
 import { RepositoryProvider } from './data/RepositoryContext';
 
