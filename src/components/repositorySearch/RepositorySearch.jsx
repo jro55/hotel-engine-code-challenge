@@ -28,7 +28,7 @@ export default function Home() {
 				placeholder="Search GitHub"
 				value={searchTerm}
 				handleInputOnChange={(term) => setSearchTerm(term)}
-				handleSearch={handleSearch}
+				handleSearch={() => handleSearch()}
 				searchIcon
 				filterOptions={{
 					label: 'Language',
@@ -75,6 +75,7 @@ export default function Home() {
 	 * @param {string=} popularSearchTerm - predefined search term
 	 */
 	async function handleSearch(popularSearchTerm) {
+        console.log('popularSearchTerm', popularSearchTerm)
 		try {
 			setBusy(true);
 			const params = { sort: sortBy };
