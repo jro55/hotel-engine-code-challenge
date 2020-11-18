@@ -52,6 +52,7 @@ export default function Home() {
             />
             <RepositoryListView
                 results={searchResults.items || []}
+                totalCount={searchResults.total_count}
             />
         </>
     )
