@@ -41,6 +41,7 @@ export default function SearchBar(props) {
         handleInputOnChange,
         filterOptions,
         sortOptions,
+        disabled,
     } = props;
     return (
         <FlexContainer>
@@ -62,10 +63,16 @@ export default function SearchBar(props) {
                             return handleSearch();
                         }
                     }}
+                    disabled={disabled}
                 />
                 {
                     searchIcon && (
-                        <IconButton onClick={handleSearch} className={classes.iconButton} aria-label="search">
+                        <IconButton
+                            onClick={handleSearch}
+                            className={classes.iconButton}
+                            aria-label="search"
+                            disabled={disabled}
+                        >
                             <SearchIcon />
                         </IconButton>
                     )

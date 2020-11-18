@@ -16,9 +16,9 @@ export default function Home() {
     const [sortBy, setSortBy] = useState('best match');
 
     return (
-        <div>
+        <>
             <ProgressSpinner visible={busy} />
-            <div className={classes.titleBar}>
+            <div className={classes.title}>
                 Search de GitHub!!!!
             </div>
             <SearchBar
@@ -32,8 +32,10 @@ export default function Home() {
                     options: [
                         { id: 'any', display: 'Any' },
                         { id: 'javascript', display: 'JavaScript' },
+                        { id: 'typescript', display: 'TypeScript' },
                         { id: 'java', display: 'Java' },
                         { id: 'python', display: 'Python' },
+                        { id: 'ruby', display: 'Ruby' },
                     ],
                     handleChange: option => setActiveFilter(option),
                     activeFilter,
@@ -46,11 +48,12 @@ export default function Home() {
                     handleChange: option => setSortBy(option),
                     sortBy,
                 }}
+                disabled={busy}
             />
             <RepositoryListView
                 results={searchResults.items || []}
             />
-        </div>
+        </>
     )
 
     async function handleSearch() {
@@ -84,18 +87,7 @@ const useStyles = makeStyles((theme) => ({
       alignItems: 'center',
       width: 400,
     },
-    input: {
-      marginLeft: theme.spacing(1),
-      flex: 1,
-    },
-    iconButton: {
-      padding: 10,
-    },
-    divider: {
-      height: 28,
-      margin: 4,
-    },
-    titleBar: {
+    title: {
         margin: 40,
         fontWeight: 'bold',
         fontSize: 20,
