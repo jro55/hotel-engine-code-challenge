@@ -47,9 +47,11 @@ export default function SearchBar(props) {
         <FlexContainer>
             <SortBy
                 sortOptions={sortOptions}
+                disabled={disabled}
             />
             <FilterBy
                 filterOptions={filterOptions}
+                disabled={disabled}
             />
             <Paper className={classes.root}>
                 <InputBase
@@ -97,7 +99,7 @@ function FilterBy(props) {
 
     const classes = useStyles();
 
-    const { filterOptions } = props;
+    const { filterOptions, disabled } = props;
 
     const handleChange = (event) => {
         filterOptions.handleChange(event.target.value);
@@ -112,10 +114,16 @@ function FilterBy(props) {
                     value={filterOptions.activeFilter}
                     onChange={handleChange}
                     label={filterOptions.label}
+                    disabled={disabled}
                 >
                     {
                         filterOptions.options.map(option => (
-                            <MenuItem value={option.id}>{option.display}</MenuItem>
+                            <MenuItem
+                                value={option.id}
+                                key={option.id}
+                            >
+                                {option.display}
+                            </MenuItem>
                         ))
                     }
                 </Select>
@@ -138,7 +146,7 @@ function SortBy(props) {
 
     const classes = useStyles();
 
-    const { sortOptions } = props;
+    const { sortOptions, disabled } = props;
 
     const handleChange = (event) => {
         sortOptions.handleChange(event.target.value);
@@ -153,10 +161,16 @@ function SortBy(props) {
                     value={sortOptions.sortBy}
                     onChange={handleChange}
                     label={'Sort by'}
+                    disabled={disabled}
                 >
                     {
                         sortOptions.options.map(option => (
-                            <MenuItem value={option.id}>{option.display}</MenuItem>
+                            <MenuItem
+                                value={option.id}
+                                key={option.id}
+                            >
+                                {option.display}
+                            </MenuItem>
                         ))
                     }
                 </Select>

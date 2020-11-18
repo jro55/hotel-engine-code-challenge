@@ -1,14 +1,12 @@
 import Container from '@material-ui/core/Container';
 
-import logo from './logo.svg';
 import './App.css';
 import { Home } from './components/home'
-import { AppContainer } from './components/common/Layout'
 
 function App() {
+  console.warn("No warnings here! Oh wait, isn't this a warning?")
   return (
     <Container>
-      {/* <Container maxWidth="sm"> */}
       <Home />
     </Container>
   );
