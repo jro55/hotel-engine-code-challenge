@@ -2,20 +2,13 @@ import React from 'react';
 import { makeStyles } from '@material-ui/core/styles';
 import Paper from '@material-ui/core/Paper';
 import InputBase from '@material-ui/core/InputBase';
-import Divider from '@material-ui/core/Divider';
 import IconButton from '@material-ui/core/IconButton';
-import MenuIcon from '@material-ui/icons/Menu';
 import SearchIcon from '@material-ui/icons/Search';
-import DirectionsIcon from '@material-ui/icons/Directions';
 import styled from 'styled-components'
-import Box from '@material-ui/core/Box';
 import InputLabel from '@material-ui/core/InputLabel';
 import MenuItem from '@material-ui/core/MenuItem';
-import FormHelperText from '@material-ui/core/FormHelperText';
 import FormControl from '@material-ui/core/FormControl';
 import Select from '@material-ui/core/Select';
-
-import { Container } from '../common/Layout'
 
 export default function SearchBar(props) {
     const useStyles = makeStyles((theme) => ({
@@ -58,9 +51,6 @@ export default function SearchBar(props) {
                 filterOptions={filterOptions}
             />
             <Paper className={classes.root}>
-                <IconButton className={classes.iconButton} aria-label="menu">
-                    <MenuIcon />
-                </IconButton>
                 <InputBase
                     className={classes.input}
                     placeholder={placeholder}
@@ -68,7 +58,7 @@ export default function SearchBar(props) {
                     value={value}
                     onChange={e => handleInputOnChange(e.target.value)}
                     onKeyDown={(e) => {
-                        if(e.keyCode == 13) { // if enter key is pressed
+                        if(e.keyCode === 13) { // if enter key is pressed
                             return handleSearch();
                         }
                     }}
@@ -99,8 +89,6 @@ function FilterBy(props) {
       }));
 
     const classes = useStyles();
-
-    const [age, setAge] = React.useState('');
 
     const { filterOptions } = props;
 
@@ -173,5 +161,5 @@ function SortBy(props) {
     display: flex;
     flex-direction: row;
     flex-wrap: wrap;
-    justify-content: flex-start;
+    justify-content: center;
 `;

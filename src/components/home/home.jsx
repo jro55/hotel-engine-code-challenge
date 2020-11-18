@@ -1,18 +1,8 @@
 import React, { useState } from 'react';
 import { makeStyles } from '@material-ui/core/styles';
-import Paper from '@material-ui/core/Paper';
-import InputBase from '@material-ui/core/InputBase';
-import Divider from '@material-ui/core/Divider';
-import IconButton from '@material-ui/core/IconButton';
-import MenuIcon from '@material-ui/icons/Menu';
-import SearchIcon from '@material-ui/icons/Search';
-import DirectionsIcon from '@material-ui/icons/Directions';
-import styled from 'styled-components'
-import Box from '@material-ui/core/Box';
 
-import { Container } from '../common/Layout'
 import SearchBar from '../common/SearchBar';
-import ListView from './ListView';
+import RepositoryListView from './RepositoryListView';
 import ProgressSpinner from '../common/ProgressSpinner';
 import { makeRequest } from '../../services/APIService';
 
@@ -28,7 +18,7 @@ export default function Home() {
     return (
         <div>
             <ProgressSpinner visible={busy} />
-            <div>
+            <div className={classes.titleBar}>
                 Search de GitHub!!!!
             </div>
             <SearchBar
@@ -57,7 +47,7 @@ export default function Home() {
                     sortBy,
                 }}
             />
-            <ListView
+            <RepositoryListView
                 results={searchResults.items || []}
             />
         </div>
@@ -71,16 +61,18 @@ export default function Home() {
                 sort: sortBy,
             }
             if (activeFilter !== 'any') params.q += `language:${activeFilter}`;
-
-            console.log('params', params)
+            
             const results = await makeRequest('get', 'https://api.github.com/search/repositories', {}, params)
             console.log('results', results)
             setSearchResults(results);
             setBusy(false);
         } catch (error) {
-            console.error('error here')
-            // Normally I would log something here for future debugging purposes
+            // normally I would log something here for future debugging purposes
+            console.error(error)
+            // ideally the backend would have responded with a useful, human readable error that we could 
+            // display for the end user
             setBusy(false);
+            alert('An error occurred fetching results from GitHub, please try again.')
         }
     }
 }
@@ -103,4 +95,10 @@ const useStyles = makeStyles((theme) => ({
       height: 28,
       margin: 4,
     },
+    titleBar: {
+        margin: 40,
+        fontWeight: 'bold',
+        fontSize: 20,
+        textAlign: 'center'
+    }
   }));
